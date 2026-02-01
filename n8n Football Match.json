@@ -1,0 +1,351 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtMinute": 5
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "bd32706f-17c9-48e8-b0d2-ce8165ea062e",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.football-data.org/v4/matches",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "season",
+              "value": "2026"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Auth-Token",
+              "value": "a5dd87081dc5485485921dc8794bfad8"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "2fcfeed4-e7f8-4bd5-961e-2b6db57d0d4c",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1FAIN38Bm0_6UpV27ySVYFlCIDp2JZirMXeIFqF3yS7M",
+          "mode": "list",
+          "cachedResultName": "Football Match",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1FAIN38Bm0_6UpV27ySVYFlCIDp2JZirMXeIFqF3yS7M/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "الورقة1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1FAIN38Bm0_6UpV27ySVYFlCIDp2JZirMXeIFqF3yS7M/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Country": "={{ $json.matches[0].area.name }}",
+            "League": "={{ $json.matches[0].competition.name }}",
+            "Date": "={{ $json.matches[0].utcDate }}",
+            "Status": "={{ $json.matches[0].status }}",
+            "Matchday": "={{ $json.matches[0].matchday }}",
+            "Stage": "={{ $json.matches[0].stage }}",
+            "Home_Team": "={{ $json.matches[0].homeTeam.name }}",
+            "Home_Logo": "={{ $json.matches[0].homeTeam.crest }}",
+            "Away_Team": "={{ $json.matches[0].awayTeam.name }}",
+            "Away_Logo": "={{ $json.matches[0].awayTeam.crest }}",
+            "Winner": "={{ $json.matches[0].score.winner }}",
+            "Home_Goals": "={{ $json.matches[0].score.fullTime.home }}",
+            "Away_Goals": "={{ $json.matches[0].score.fullTime.away }}",
+            "Referee": "={{ $json.matches[0].referees[0].name }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "League",
+              "displayName": "League",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Country",
+              "displayName": "Country",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Matchday",
+              "displayName": "Matchday",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Stage",
+              "displayName": "Stage",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Home_Team",
+              "displayName": "Home_Team",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Home_Logo",
+              "displayName": "Home_Logo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Away_Team",
+              "displayName": "Away_Team",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Away_Logo",
+              "displayName": "Away_Logo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Home_Goals",
+              "displayName": "Home_Goals",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Away_Goals",
+              "displayName": "Away_Goals",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Winner",
+              "displayName": "Winner",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Referee",
+              "displayName": "Referee",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        688,
+        -16
+      ],
+      "id": "21af0323-c21d-44e2-ac0c-631bf95e1d91",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleApi": {
+          "id": "iqDagFQ5c3ckbEfp",
+          "name": "Google Service Account account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 50,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        448,
+        0
+      ],
+      "id": "37e9eb78-3beb-41af-b2d1-f554a6419214",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "name": "Replace Me",
+      "typeVersion": 1,
+      "position": [
+        800,
+        208
+      ],
+      "id": "29aeab95-a798-44df-aee0-4e8ababa265c"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        []
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Replace Me",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Replace Me": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "ba832af4-9a8d-4ab5-848b-3eb01a42e1bb",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "21f054de4e228bd2a454dfd53bba653fbe2f66d742ba2647138f31198ecec9a8"
+  },
+  "id": "G9bhrG48hUbEHCWTF9hvE",
+  "tags": []
+}
