@@ -144,8 +144,6 @@ Dashboard Highlights:
 ├── README.md
 ```
 
----
-
 ## 📎 Presentation
 
 The full project explanation, insights, and results are available in the project presentation file.
@@ -160,11 +158,3 @@ The full project explanation, insights, and results are available in the project
 * Add automated alerts for high-risk matches
 * Integrate more leagues and seasons
 
-
-لو حابة:
-
-* أظبطه **أكتر Tech / أكتر Business**
-* أو أكتبه **بالإنجليزي أخف مناسب HR**
-* أو أضيف **Badges + Screenshots + Demo GIFs**
-
-قولي و أظبطهولك فورًا 🔥⚽
